@@ -1,7 +1,7 @@
 <?php
     session_start();
     $link="../files/";
-    include_once("../resouces/connection.php");
+    include_once("../resources/connection.php");
     if(isset( $_SESSION['aid']))
     {
         header("location:home.php");
