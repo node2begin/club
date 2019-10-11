@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include_once("../resouces/connection.php");
+	include_once("../resources/connection.php");
 	$title="Sports";
 	$desc="This is the description of Sports";
 	if(!isset( $_SESSION['aid']))

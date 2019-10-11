@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include_once("../resouces/connection.php");
+	include_once("../resources/connection.php");
 	$title="City";
 	$desc="This is the description of City";
 	if(!isset( $_SESSION['aid']))
