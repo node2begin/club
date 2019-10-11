@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include_once("../resources/connection.php");
 	$title="Title";
 	$desc="This is the description of page";
 	if(!isset( $_SESSION['aid']))
