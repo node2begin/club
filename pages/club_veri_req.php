@@ -8,7 +8,7 @@
 		header("location:login.php");
 	}
 
-	$qry="select req.*,c.*,a.AdminID,a.Username from tblclubverireq req join tblclub c on c.ClubID=req.ClubID join tbladmin a on req.AdminId=a.AdminID where req.Status!=1";
+	$qry="select req.*,c.*,a.AdminID,a.Username from tblclubverireq req join tblclub c on c.ClubID=req.ClubID join tbladmin a on req.AdminId=a.AdminID where req.Status!=1";  
 	$r=mysqli_query($con,$qry) or die(mysqli_error($con));
 ?>
 
