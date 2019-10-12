@@ -14,7 +14,7 @@
 		mysqli_query($con,$updqry) or die(mysqli_error($con));
 	}
 	$qry="select PlayerID,Name,USerName,ProfileImage,Status,RegistrationDate,CityName from tblplayer p join tblcity c on p.CityID=c.CityID";
-	$sel=mysqli_query($con,$qry) or die(mysqli_error());
+	$sel=mysqli_query($con,$qry) or die(mysqli_error($con));
 	
 ?>
 
@@ -84,6 +84,7 @@
 																	<th>Status</th>
 																	<th>RegistrationDate</th>
 																	<th>City</th>
+																	<th>More Info</th>
 																</tr>
 															</thead>
 															<tbody>
@@ -104,6 +105,7 @@
 																	</td>
 																	<td><?= $row[5]?></td>
 																	<td><?= $row[6]?></td>
+																	<td><a href="player_info.php?pid=<?= $row[0]?>">Player Info</a></td>
 																</tr>
 																<?php } ?>
 															</tbody>
@@ -115,6 +117,7 @@
 																	<th>Status</th>
 																	<th>RegistrationDate</th>
 																	<th>City</th>
+																	<th>More Info</th>
 																</tr>
 															</tfoot>
 														</table>
