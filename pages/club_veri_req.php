@@ -8,14 +8,7 @@
 		header("location:login.php");
 	}
 
-	if(isset($_GET['vid'])){
-
-		$vid=$_GET['vid'];
-		$qry="update `tblclubverireq` set `Status` = 1 - `Status` where `ClubVerificationReqID` = $vid";
-		mysqli_query($con,$qry) or die(mysqli_error($con));
-	}
-
-	$qry="select req.*,c.* from tblclubverireq req join tblclub c on c.ClubID=req.ClubID";
+	$qry="select req.*,c.*,a.AdminID,a.Username from tblclubverireq req join tblclub c on c.ClubID=req.ClubID join tbladmin a on req.AdminId=a.AdminID where req.Status!=1";
 	$r=mysqli_query($con,$qry) or die(mysqli_error($con));
 ?>
 
@@ -91,20 +84,18 @@
 																<tr>
 																	<td><?=$ROW['Name']?></td>
 																	<td>
-																		<a href="club_veri_req.php?vid=<?= $ROW['0'] ?>">
-																			<?php
-																				if($ROW['Status'])
-																					echo "block";
-																				else
-																					echo "active";
-																			?>
-																		</a>
+																		<?php
+																			if($ROW['Status']==0)
+																				echo "Unseen";
+																			else
+																				echo "Rejected";
+																		?>
 																	</td>
-																	<td><?=$ROW['AdminID']?></td>
+																	<td><?=$ROW['Username']?></td>
 																	<td>
 																		<img src="../files/image/<?= $ROW['Proof']?>" height="50px" width="50px"/>
 																	</td>
-																	<td><a href="club_info.php?cid=<?= $ROW['0'] ?>">view more</a></td>
+																	<td><a href="club_req_info.php?cid=<?= $ROW['0'] ?>">view more</a></td>
 																</tr>
 															<?php
 															        }
