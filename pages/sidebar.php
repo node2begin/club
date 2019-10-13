@@ -34,6 +34,22 @@
 						<span class="pcoded-mtext">Sports</span>
 					</a>
 				</li>
+				<li class="">
+					<a href="tournament.php" class="waves-effect waves-dark">
+						<span class="pcoded-micon">
+							<i class="feather icon-sidebar"></i>
+						</span>
+						<span class="pcoded-mtext">Tournament</span>
+					</a>
+				</li>
+				<li class="">
+					<a href="team.php" class="waves-effect waves-dark">
+						<span class="pcoded-micon">
+							<i class="feather icon-sidebar"></i>
+						</span>
+						<span class="pcoded-mtext">Team</span>
+					</a>
+				</li>
 				<!-- <li class="pcoded-hasmenu">
 					<a href="javascript:void(0)" class="waves-effect waves-dark">
 						<span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
@@ -66,6 +82,14 @@
 							<i class="feather icon-sidebar"></i>
 						</span>
 						<span class="pcoded-mtext">City</span>
+					</a>
+				</li>
+				<li class="">
+					<a href="achievements.php" class="waves-effect waves-dark">
+						<span class="pcoded-micon">
+							<i class="feather icon-sidebar"></i>
+						</span>
+						<span class="pcoded-mtext">Achievements</span>
 					</a>
 				</li>
 				<li class="">

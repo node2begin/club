@@ -1,21 +1,21 @@
 <?php
 	session_start();
 	include_once("../resources/connection.php");
-	$title="Club";
-	$desc="Show All Clubs";
+	$title="Team";
+	$desc="Show All Teams";
 	if(!isset( $_SESSION['aid']))
 	{
 		header("location:login.php");
 	}
 
-	if(isset($_REQUEST['scid']))
+	if(isset($_REQUEST['strid']))
 	{
-		$cid=$_REQUEST['scid'];
-		$updqry="UPDATE `tblclub` SET `Status`= 1 - `Status` WHERE `ClubID`=$cid";
+		$strid=$_REQUEST['strid'];
+		$updqry="UPDATE `tblteamreg` SET `Status`= 1 - `Status` WHERE `TeamRegID`=$strid";
 		mysqli_query($con,$updqry) or die(mysqli_error($con));
 	}
 
-	$qry="select * from tblclub";
+	$qry="select * from tblteamreg";
 	$r=mysqli_query($con,$qry) or die(mysqli_error());
 	
 ?>
@@ -68,12 +68,9 @@
 													<table id="order-table" class="table table-striped table-bordered nowrap">
 														<thead>
 															<tr>
-																<th>Name</th>
+																<th>Title</th>
 																<th>Status</th>
-																<th>City</th>
-																<th>Image</th>
-																<th>Address</th>
-																<th>LocationURL</th>
+																<th>Registration Date</th>
 																<th>View More</th>
 															</tr>
 														</thead>
@@ -83,24 +80,19 @@
 															        while($ROW=mysqli_fetch_array($r,MYSQLI_NUM)){
 															?>
 																<tr>
-																	<td><?=$ROW['1']?></td>
+																	<td><?=$ROW['2']?></td>
 																	<td>
-																		<a href="club.php?scid=<?= $ROW[0]?>">
+																		<a href="team.php?strid=<?= $ROW[0]?>">
 																		<?php 
-																			if($ROW['Status'])
+																			if($ROW['3'])
 																				echo "Block";
 																			else
 																				echo "Active";
 																		?>
 																		</a>
 																	</td>
-																	<td><?=$ROW['3']?></td>
-																	<td>
-																		<img src="../files/image/<?= $ROW['4']?>" height="50px" width="50px"/>
-																	</td>
-																	<td><?=$ROW['5']?></td>
-																	<td><?=$ROW['6']?></td>
-																	<td><a href="club_info.php?cid=<?= $ROW['0'] ?>">view more</a></td>
+																	<td><?=$ROW['4']?></td>
+																	<td><a href="team_info.php?trid=<?= $ROW['0'] ?>">view more</a></td>
 																</tr>
 															<?php
 															        }
@@ -109,12 +101,9 @@
 														</tbody>
 														<tfoot>
 															<tr>
-																<th>Name</th>
+																<th>Title</th>
 																<th>Status</th>
-																<th>City</th>
-																<th>Image</th>
-																<th>Address</th>
-																<th>LocationURL</th>
+																<th>Registration Date</th>
 																<th>View More</th>
 															</tr>
 														</tfoot>

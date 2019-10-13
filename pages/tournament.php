@@ -1,21 +1,22 @@
 <?php
 	session_start();
 	include_once("../resources/connection.php");
-	$title="Club";
-	$desc="Show All Clubs";
+	$title="Tournament";
+	$desc="Show All Tournaments";
 	if(!isset( $_SESSION['aid']))
 	{
 		header("location:login.php");
 	}
 
-	if(isset($_REQUEST['scid']))
+
+	if(isset($_REQUEST['stid']))
 	{
-		$cid=$_REQUEST['scid'];
-		$updqry="UPDATE `tblclub` SET `Status`= 1 - `Status` WHERE `ClubID`=$cid";
+		$tid=$_REQUEST['stid'];
+		$updqry="UPDATE `tbltournament` SET `Status`= 1 - `Status` WHERE `TournamentID`=$tid";
 		mysqli_query($con,$updqry) or die(mysqli_error($con));
 	}
 
-	$qry="select * from tblclub";
+	$qry="select * from tbltournament t join tblclub c on c.ClubID=t.ClubID";
 	$r=mysqli_query($con,$qry) or die(mysqli_error());
 	
 ?>
@@ -68,24 +69,30 @@
 													<table id="order-table" class="table table-striped table-bordered nowrap">
 														<thead>
 															<tr>
-																<th>Name</th>
+																<th>Title</th>
+																<th>Time</th>
+																<th>Date</th>
+																<th>Club</th>
+																<th>Regi. Starting Date</th>
+																<th>Regi. Ending Date</th>
 																<th>Status</th>
-																<th>City</th>
-																<th>Image</th>
-																<th>Address</th>
-																<th>LocationURL</th>
 																<th>View More</th>
 															</tr>
 														</thead>
 														<tbody>
 															<?php
 																if(mysqli_num_rows($r)>0){
-															        while($ROW=mysqli_fetch_array($r,MYSQLI_NUM)){
+															        while($ROW=mysqli_fetch_array($r)){
 															?>
 																<tr>
-																	<td><?=$ROW['1']?></td>
+																	<td><?=$ROW['Title']?></td>
+																	<td><?=$ROW['Time']?></td>
+																	<td><?=$ROW['Date']?></td>
+																	<td><?=$ROW['Name']?></td>
+																	<td><?=$ROW['RegistrationSDate']?></td>
+																	<td><?=$ROW['RegistrationEDate']?></td>
 																	<td>
-																		<a href="club.php?scid=<?= $ROW[0]?>">
+																		<a href="tournament.php?stid=<?= $ROW[0]?>">
 																		<?php 
 																			if($ROW['Status'])
 																				echo "Block";
@@ -94,13 +101,7 @@
 																		?>
 																		</a>
 																	</td>
-																	<td><?=$ROW['3']?></td>
-																	<td>
-																		<img src="../files/image/<?= $ROW['4']?>" height="50px" width="50px"/>
-																	</td>
-																	<td><?=$ROW['5']?></td>
-																	<td><?=$ROW['6']?></td>
-																	<td><a href="club_info.php?cid=<?= $ROW['0'] ?>">view more</a></td>
+																	<td><a href="tournament_info.php?tid=<?= $ROW['0'] ?>">view more</a></td>
 																</tr>
 															<?php
 															        }
@@ -109,12 +110,13 @@
 														</tbody>
 														<tfoot>
 															<tr>
-																<th>Name</th>
+																<th>Title</th>
+																<th>Time</th>
+																<th>Date</th>
+																<th>Club</th>
+																<th>Regi. Starting Date</th>
+																<th>Regi. Ending Date</th>
 																<th>Status</th>
-																<th>City</th>
-																<th>Image</th>
-																<th>Address</th>
-																<th>LocationURL</th>
 																<th>View More</th>
 															</tr>
 														</tfoot>
