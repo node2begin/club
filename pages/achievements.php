@@ -7,7 +7,7 @@
 	{
 		header("location:login.php");
 	}
-	$qry="select p.*,Name from tblplayer p join tblachievements a on p.PlayerID=a.PlayerID";
+	$qry="select a.*,Name from tblplayer p join tblachievements a on p.PlayerID=a.PlayerID";
 	$sel=mysqli_query($con,$qry) or die(mysqli_error($con));
 	
 ?>
@@ -73,16 +73,16 @@
 															<thead>
 																<tr>
 																	<th>Achievements Title</th>
-																	<th>Description</th>
+																	<th style="width: 300px;">Description</th>
 																	<th>Profile Image</th>
 																	<th>Player Name</th>
 																</tr>
 															</thead>
 															<tbody>
-																<?php while($row=mysqli_fetch_row($sel)) { ?>
+																<?php while($row=mysqli_fetch_array($sel)) { ?>
 																<tr>
 																	<td><?= $row['Title']?></td>
-																	<td><?= $row['Description']?></td>
+																	<td style="width: 200px;" title="<?= $row['Description']?>"><?= substr($row['Description'], 0,30)?></td>
 																	<td><img height="50px" width="50px" src="../files/image/<?= $row['Image']?>" /></td>
 																	<td><?= $row['Name'] ?></td>
 																</tr>
@@ -91,7 +91,7 @@
 															<tfoot>
 																<tr>
 																	<th>Achievements Title</th>
-																	<th>Description</th>
+																	<th style="width: 300px;">Description</th>
 																	<th>Profile Image</th>
 																	<th>Player Name</th>
 																</tr>
