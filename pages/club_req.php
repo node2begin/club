@@ -7,13 +7,13 @@
 	{
 		header("location:login.php");
 	}
-	if(isset($_REQUEST['craid']))
+	/*if(isset($_REQUEST['craid']))
 	{
 		$pid=$_REQUEST['craid'];
 		$updqry="UPDATE `tblclubreqapp` SET `Status`= 1 - `Status` WHERE `ClubReqAppID`=$pid";
 		mysqli_query($con,$updqry) or die(mysqli_error($con));
 		header("location:club_req.php");
-	}
+	}*/
 	$qry="select * from tblclubreq cq join tblclub c join tblcity tc on c.ClubID=cq.ClubID and tc.CityID=c.CityID";
 	$sel=mysqli_query($con,$qry)or die(mysqli_error($con));
 ?>
@@ -126,14 +126,16 @@
 															Resume :- <a href="../files/PDF/<?= $crarow['Resume'] ?>"><?= $crarow['Resume'] ?></a>		
 														</div>
 														<div class="col-md-4">  
-															<a href="club_req.php?craid=<?= $crarow['ClubReqAppID'] ?>">
+															<!-- <a href="club_req.php?craid=<?= $crarow['ClubReqAppID'] ?>"> -->
 															<?php 
 																if($crarow['Status']=="0")
-																	echo "Active";
+																	echo "Unresponded";
+																else if($crarow['Status']=="1")
+																	echo "Selected";
 																else
-																	echo "Block";
+																	echo "Rejected";
 															?>
-															</a>
+															<!-- </a> -->
 														</div>
 													</div>
 													<?php }	?>
