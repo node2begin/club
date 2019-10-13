@@ -12,8 +12,12 @@
 	if(isset($_GET['cid'])){
 		$cid=$_GET['cid'];
 		$qry="select * from tblclub where ClubID=$cid";
-		$arr=mysqli_query($con,$qry)or die(mysqli_error());
+		$arr=mysqli_query($con,$qry)or die(mysqli_error($con));
 		$data=mysqli_fetch_row($arr);
+
+		$qry1="select * from tblclubimages where ClubID=$cid";
+		$arr1=mysqli_query($con,$qry1) or die(mysqli_error($con));
+
 	}else
 		header("location:club.php");
 ?>
@@ -81,6 +85,24 @@
 														<dt class="col-sm-3 m-t-5">URL</dt>
 														<dd class="col-sm-9 m-t-5"><a href="http://<?=$data['6']?>" target="_blank"><?= $data['6'] ?></a></dd>
 													</dl>
+												</div>
+												<div class="m-l-50">
+													<div class="card-header">
+														<h5 style="font-size: 1.5em">Images</h5>
+													</div>
+													<div class="card-block">
+														<div class="row">
+															<?php
+																while($data1=mysqli_fetch_array($arr1)){
+															?>
+																<div class="col-md-4 col-lg-4">
+																	<img src="../files/image/<?= $data1['ImageURL'] ?>"class="img-fluid">
+																</div>
+															<?php
+																}
+															?>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
